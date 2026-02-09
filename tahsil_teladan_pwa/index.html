@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahsil Tahfidz - Sekolah Teladan</title>
+    <title>Tahsil Tahfidz - Teladan</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        :root { --primary: #2E7D32; --secondary: #1565C0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0fdf4; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; width: 100%; max-width: 450px; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        :root { --primary: #2E7D32; --secondary: #1565C0; --accent: #81C784; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0fdf4; margin: 0; padding: 20px; display: flex; justify-content: center; color: #333; }
+        .card { background: white; width: 100%; max-width: 450px; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid var(--primary); }
         .hidden { display: none; }
-        h1 { color: var(--primary); text-align: center; font-size: 22px; margin-bottom: 20px; }
-        .btn-mode { width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; font-size: 16px; }
+        h1 { color: var(--primary); text-align: center; font-size: 24px; margin-bottom: 5px; letter-spacing: 1px; }
+        .sub-title { text-align: center; font-size: 13px; color: #666; margin-bottom: 25px; font-style: italic; }
+        
+        /* Button Styles */
+        .btn-mode { width: 100%; padding: 18px; margin: 12px 0; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; color: white; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .btn-guru { background: var(--primary); }
         .btn-ortu { background: var(--secondary); }
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-top: 25px; cursor: pointer; }
-        .footer { text-align: center; margin-top: 20px; font-size: 10px; color: #aaa; }
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; margin-top: 25px; cursor: pointer; font-size: 16px; }
+        .btn-back { background: none; border: none; color: #e53935; cursor: pointer; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; }
+
+        /* Form Styles */
+        label { display: block; margin-top: 18px; font-weight: 600; font-size: 14px; color: #444; }
+        input, select, textarea { width: 100%; padding: 14px; margin-top: 6px; border: 1.5px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 15px; transition: 0.3s; outline: none; }
+        input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(46, 125, 50, 0.2); }
+        
+        /* Result Styles for Parents */
+        .report-card { background: #f9f9f9; padding: 15px; border-radius: 15px; margin-top: 15px; border-left: 5px solid var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .report-date { font-size: 12px; color: #888; font-weight: bold; }
+        .report-detail { font-size: 15px; margin-top: 5px; line-height: 1.4; }
+        
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div id="loginPage">
-        <h1>MASUK SISTEM TAHSIL</h1>
-        <p style="text-align:center; color:#666;">Sekolah Teladan Yogyakarta</p>
+        <h1>SISTEM TAHSIL</h1>
+        <p class="sub-title">Cahaya Al-Qur'an di Sekolah Teladan</p>
         <button class="btn-mode btn-guru" onclick="showPage('guruPage')">MASUK SEBAGAI GURU</button>
         <button class="btn-mode btn-ortu" onclick="showPage('ortuPage')">MASUK SEBAGAI ORANG TUA</button>
     </div>
 
     <div id="guruPage" class="hidden">
-        <h1>INPUT DATA TAHFIDZ</h1>
-        <button onclick="showPage('loginPage')" style="background:none; border:none; color:red; cursor:pointer;">← Kembali</button>
+        <button class="btn-back" onclick="showPage('loginPage')">← KEMBALI</button>
+        <h1>INPUT TAHSIL</h1>
         
         <label>Jenis Kelompok</label>
         <select id="jenis_kelompok" onchange="toggleReguler()">
@@ -40,51 +53,58 @@
             <option value="Reguler">Reguler (Tilawati/Quran)</option>
         </select>
 
-        <label>Nama Guru</label>
+        <label>Nama Guru Pengampu</label>
         <select id="guru">
             <option>Pak Tebe</option><option>Pak Oky</option><option>Bu Ina</option><option>Pak Anas</option>
-            </select>
-
-        <label>Nama Murid</label>
-        <input type="text" id="nama" placeholder="Nama lengkap siswa">
-
-        <div id="sectionReguler" class="hidden">
-            <label>Jilid Tilawati</label>
-            <input type="text" id="jilid" placeholder="Jilid">
-            <label>Halaman</label>
-            <input type="text" id="halaman" placeholder="Halaman">
-        </div>
-
-        <label>Setoran Hafalan</label>
-        <input type="text" id="hafalan" placeholder="Contoh: An-Naba 1-10">
-
-        <label>Predikat</label>
-        <select id="predikat">
-            <option>A (Sangat Lancar)</option><option>B (Lancar)</option>
-            <option>C (Cukup Lancar)</option><option>D (Murojaah)</option>
+            <option>Bu Mela</option><option>Bu Arrum</option><option>Pak Irhas</option><option>Pak Yusuf</option>
+            <option>Bu Rifa</option><option>Pak Hilmi</option><option>Pak Adieb</option>
         </select>
 
-        <button class="btn-submit" onclick="kirimData()">SIMPAN DATA</button>
+        <label>Nama Lengkap Murid</label>
+        <input type="text" id="nama" placeholder="Ketik nama siswa...">
+
+        <div id="sectionReguler" class="hidden">
+            <label>Jilid & Halaman</label>
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="jilid" placeholder="Jilid">
+                <input type="text" id="halaman" placeholder="Hal">
+            </div>
+        </div>
+
+        <label>Capaian Setoran (Surah/Ayat)</label>
+        <input type="text" id="hafalan" placeholder="Contoh: An-Naba 1-10">
+
+        <label>Predikat Hafalan</label>
+        <select id="predikat">
+            <option value="A (Sangat Lancar)">A (Sangat Lancar)</option>
+            <option value="B (Lancar)">B (Lancar)</option>
+            <option value="C (Cukup Lancar)">C (Cukup Lancar)</option>
+            <option value="D (Perlu Murojaah)">D (Perlu Murojaah)</option>
+        </select>
+
+        <button class="btn-submit" id="btnSimpan" onclick="kirimData()">SIMPAN LAPORAN</button>
     </div>
 
     <div id="ortuPage" class="hidden">
-        <h1>CEK PROGRES ANAK</h1>
-        <button onclick="showPage('loginPage')" style="background:none; border:none; color:red; cursor:pointer;">← Kembali</button>
+        <button class="btn-back" onclick="showPage('loginPage')" style="color:var(--secondary)">← KEMBALI</button>
+        <h1>PROGRES ANANDA</h1>
         
-        <label>Masukkan Nama Lengkap Anak</label>
-        <input type="text" id="cariNama" placeholder="Contoh: Ahmad Fauzi">
+        <label>Cari Nama Lengkap Ananda</label>
+        <input type="text" id="cariNama" placeholder="Ketik nama ananda...">
         
-        <button class="btn-submit" style="background:var(--secondary);" onclick="alert('Fitur pencarian sedang dikoneksikan ke Database...')">CARI DATA</button>
+        <button class="btn-submit" style="background:var(--secondary);" id="btnCari" onclick="cariData()">LIHAT PROGRES</button>
         
-        <div id="hasilCari" style="margin-top:20px; font-size:14px; color:#333;">
-            <p>Data terakhir akan muncul di sini setelah sistem pencarian aktif.</p>
-        </div>
+        <div id="hasilCari" style="margin-top:20px;">
+            </div>
     </div>
 
-    <div class="footer">Created by TB Azmi Umar Fauzi</div>
+    <div class="footer">Created by TB Azmi Umar Fauzi<br>Sekolah Teladan Yogyakarta</div>
 </div>
 
 <script>
+    // URL Web App Google Script Bapak
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbyS71XhdxwAHuX_L_X_21o6FZycUtGphEcBBlQE_s8P4LiyoIabxFp_MpoL2H7cOh5KuQ/exec";
+
     function showPage(pageId) {
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('guruPage').classList.add('hidden');
@@ -100,28 +120,77 @@
     }
 
     function kirimData() {
-        const url = "https://script.google.com/macros/s/AKfycbyS71XhdxwAHuX_L_X_21o6FZycUtGphEcBBlQE_s8P4LiyoIabxFp_MpoL2H7cOh5KuQ/exec";
-        const btn = document.querySelector('.btn-submit');
+        const btn = document.getElementById('btnSimpan');
+        const nama = document.getElementById('nama').value;
+        if(!nama) { alert("Nama murid tidak boleh kosong!"); return; }
+
         btn.innerText = "Mengirim...";
         btn.disabled = true;
 
-        const data = new URLSearchParams({
+        const params = new URLSearchParams({
             guru: document.getElementById('guru').value,
-            nama_siswa: document.getElementById('nama').value,
+            nama_siswa: nama,
             hafalan: document.getElementById('hafalan').value,
             predikat_hafalan: document.getElementById('predikat').value,
+            jenis_kelompok: document.getElementById('jenis_kelompok').value,
+            jilid: document.getElementById('jilid').value || '-',
+            halaman: document.getElementById('halaman').value || '-',
             catatan: '-'
         });
 
-        fetch(url, { method: 'POST', mode: 'no-cors', body: data })
+        fetch(webAppUrl, { method: 'POST', mode: 'no-cors', body: params })
         .then(() => {
-            alert('Alhamdulillah, Data Terkirim!');
+            alert('Alhamdulillah, Laporan ' + nama + ' berhasil disimpan.');
             location.reload();
         })
         .catch(err => {
-            alert('Error: ' + err);
+            alert('Gagal mengirim: ' + err);
             btn.disabled = false;
+            btn.innerText = "SIMPAN LAPORAN";
         });
+    }
+
+    function cariData() {
+        const nama = document.getElementById('cariNama').value;
+        const hasilDiv = document.getElementById('hasilCari');
+        const btn = document.getElementById('btnCari');
+
+        if(nama.length < 3) { alert("Ketik minimal 3 huruf nama ananda"); return; }
+
+        btn.innerText = "Mencari...";
+        hasilDiv.innerHTML = "<p style='text-align:center'>Mencari di database...</p>";
+
+        fetch(webAppUrl + "?nama=" + nama)
+        .then(response => response.json())
+        .then(data => {
+            btn.innerText = "LIHAT PROGRES";
+            if(data.length === 0) {
+                hasilDiv.innerHTML = "<p style='color:red; text-align:center'>Data ananda belum ditemukan.</p>";
+                return;
+            }
+            let html = "<p style='font-size:14px; font-weight:bold;'>Riwayat Setoran Terbaru:</p>";
+            data.forEach(item => {
+                html += `
+                <div class="report-card">
+                    <span class="report-date">${item.tanggal}</span>
+                    <div class="report-detail">
+                        <b>Hafalan:</b> ${item.hafalan}<br>
+                        <b>Predikat:</b> <span style="color:var(--primary)">${item.predikat}</span><br>
+                        <small>Pengampu: ${item.guru}</small>
+                    </div>
+                </div>`;
+            });
+            hasilDiv.innerHTML = html;
+        })
+        .catch(err => {
+            btn.innerText = "LIHAT PROGRES";
+            hasilDiv.innerHTML = "<p style='color:red'>Gagal memuat data. Pastikan URL Apps Script benar.</p>";
+        });
+    }
+
+    // Registrasi PWA agar bisa diinstal di HP
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
     }
 </script>
 </body>
