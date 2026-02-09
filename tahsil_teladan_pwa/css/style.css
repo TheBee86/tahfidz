@@ -1,1 +1,14 @@
-
+:root { --primary: #2E7D32; --secondary: #1565C0; --bg: #f0fdf4; --header-bg: #e8f5e9; }
+body, html { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #333; }
+#splashScreen { background: white; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: fixed; width: 100%; z-index: 9999; }
+.logo-box { width: 90px; height: 90px; background: var(--primary); border-radius: 22px; display: flex; justify-content: center; align-items: center; color: white; font-size: 45px; font-weight: bold; }
+.page { padding: 20px; display: none; flex-direction: column; align-items: center; min-height: 100vh; box-sizing: border-box; }
+.container { width: 100%; max-width: 480px; }
+.group-header { width: 100%; padding: 10px 15px; background: var(--header-bg); color: var(--primary); font-weight: bold; font-size: 13px; border-radius: 10px; margin: 15px 0 8px 0; border-left: 5px solid var(--primary); box-sizing: border-box; }
+.item-murid { background: white; padding: 18px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid #eee; width: 100%; box-sizing: border-box; }
+input, select, textarea { width: 100%; padding: 14px; margin: 6px 0; border: 1.5px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 15px; outline: none; }
+.btn { width: 100%; padding: 18px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
+.btn-green { background: var(--primary); color: white; }
+.btn-blue { background: var(--secondary); color: white; }
+.char-counter { text-align: right; font-size: 11px; color: #888; margin-bottom: 10px; }
+.hidden { display: none; }
