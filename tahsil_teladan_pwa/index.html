@@ -1,3 +1,83 @@
-const url = "https://script.google.com/macros/s/AKfycbyS71XhdxwAHuX_L_X_21o6FZycUtGphEcBBlQE_s8P4LiyoIabxFp_MpoL2H7cOh5KuQ/exec"
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahsil Tahfidz - Teladan</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { font-family: sans-serif; background: #f0fdf4; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2E7D32; text-align: center; font-size: 22px; margin-bottom: 5px; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #333; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; background: #2E7D32; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-top: 25px; cursor: pointer; }
+        .footer { text-align: center; margin-top: 20px; font-size: 10px; color: #aaa; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>TAHSIL TAHFIDZ</h1>
+    <p style="text-align:center; font-size:12px; margin-top:0;">Sekolah Teladan Yogyakarta</p>
+    
+    <label>Nama Guru</label>
+    <select id="guru"><option>Pak Oky</option><option>Bu Ina</option><option>Bu Acha</option><option>Pak Anas</option><option>Bu Mela</option><option>Bu Arrum</option><option>Pak Tebe</option><option>Pak Irhas</option><option>Pak Yusuf</option><option>Bu Rifa</option><option>Pak Hilmi</option><option>Pak Adieb</option></select>
+    
+    <label>Kelas</label>
+    <select id="kelas"><option>Kelas 3A</option><option>Kelas 3B</option><option>Kelas 3C</option><option>Kelas 3D</option></select>
+    
+    <label>Nama Murid</label>
+    <input type="text" id="nama" placeholder="Ketik nama lengkap">
+    
+    <label>Capaian Hafalan</label>
+    <input type="text" id="hafalan" placeholder="Contoh: An-Naba 1-5">
+    
+    <label>Predikat</label>
+    <select id="predikat"><option>A (Sangat Lancar)</option><option>B (Lancar)</option><option>C (Cukup Lancar)</option><option>D (Perlu Murojaah)</option></select>
+    
+    <button id="btnSimpan" onclick="kirim()">SIMPAN DATA</button>
+    <div class="footer">Created by TB Azmi Umar Fauzi</div>
+</div>
 
+<script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 
+    function kirim() {
+        // URL SUDAH SAYA MASUKKAN DARI SCREENSHOT BAPAK
+        const url = "https://script.google.com/macros/s/AKfycbyS71XhdxwAHuX_L_X_21o6FZycUtGphEcBBlQE_s8P4LiyoIabxFp_MpoL2H7cOh5KuQ/exec";
+        
+        const btn = document.getElementById('btnSimpan');
+        const nama = document.getElementById('nama').value;
+        const hafalan = document.getElementById('hafalan').value;
+
+        if(!nama || !hafalan) { alert("Nama dan Hafalan wajib diisi!"); return; }
+
+        btn.innerText = "Menyimpan...";
+        btn.disabled = true;
+
+        const data = new URLSearchParams({
+            guru: document.getElementById('guru').value,
+            kelas: document.getElementById('kelas').value,
+            nama_siswa: nama,
+            hafalan: hafalan,
+            predikat_hafalan: document.getElementById('predikat').value,
+            catatan: '-'
+        });
+
+        fetch(url, { method: 'POST', mode: 'no-cors', body: data })
+        .then(() => { 
+            alert('Alhamdulillah, Data Berhasil Tersimpan!'); 
+            document.getElementById('nama').value=''; 
+            document.getElementById('hafalan').value=''; 
+            btn.innerText = "SIMPAN DATA";
+            btn.disabled = false;
+        })
+        .catch(err => {
+            alert('Gagal: ' + err);
+            btn.innerText = "SIMPAN DATA";
+            btn.disabled = false;
+        });
+    }
+</script>
+</body>
+</html>
