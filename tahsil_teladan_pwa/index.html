@@ -3,82 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahsil Tahfidz - Teladan</title>
+    <title>Tahsil Tahfidz - Sekolah Teladan</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        body { font-family: sans-serif; background: #f0fdf4; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { color: #2E7D32; text-align: center; font-size: 22px; margin-bottom: 5px; }
-        label { display: block; margin-top: 15px; font-weight: bold; color: #333; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; background: #2E7D32; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-top: 25px; cursor: pointer; }
+        :root { --primary: #2E7D32; --secondary: #1565C0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0fdf4; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; width: 100%; max-width: 450px; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .hidden { display: none; }
+        h1 { color: var(--primary); text-align: center; font-size: 22px; margin-bottom: 20px; }
+        .btn-mode { width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; font-size: 16px; }
+        .btn-guru { background: var(--primary); }
+        .btn-ortu { background: var(--secondary); }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-top: 25px; cursor: pointer; }
         .footer { text-align: center; margin-top: 20px; font-size: 10px; color: #aaa; }
     </style>
 </head>
 <body>
+
 <div class="card">
-    <h1>TAHSIL TAHFIDZ</h1>
-    <p style="text-align:center; font-size:12px; margin-top:0;">Sekolah Teladan Yogyakarta</p>
-    
-    <label>Nama Guru</label>
-    <select id="guru"><option>Pak Oky</option><option>Bu Ina</option><option>Bu Acha</option><option>Pak Anas</option><option>Bu Mela</option><option>Bu Arrum</option><option>Pak Tebe</option><option>Pak Irhas</option><option>Pak Yusuf</option><option>Bu Rifa</option><option>Pak Hilmi</option><option>Pak Adieb</option></select>
-    
-    <label>Kelas</label>
-    <select id="kelas"><option>Kelas 3A</option><option>Kelas 3B</option><option>Kelas 3C</option><option>Kelas 3D</option></select>
-    
-    <label>Nama Murid</label>
-    <input type="text" id="nama" placeholder="Ketik nama lengkap">
-    
-    <label>Capaian Hafalan</label>
-    <input type="text" id="hafalan" placeholder="Contoh: An-Naba 1-5">
-    
-    <label>Predikat</label>
-    <select id="predikat"><option>A (Sangat Lancar)</option><option>B (Lancar)</option><option>C (Cukup Lancar)</option><option>D (Perlu Murojaah)</option></select>
-    
-    <button id="btnSimpan" onclick="kirim()">SIMPAN DATA</button>
+    <div id="loginPage">
+        <h1>MASUK SISTEM TAHSIL</h1>
+        <p style="text-align:center; color:#666;">Sekolah Teladan Yogyakarta</p>
+        <button class="btn-mode btn-guru" onclick="showPage('guruPage')">MASUK SEBAGAI GURU</button>
+        <button class="btn-mode btn-ortu" onclick="showPage('ortuPage')">MASUK SEBAGAI ORANG TUA</button>
+    </div>
+
+    <div id="guruPage" class="hidden">
+        <h1>INPUT DATA TAHFIDZ</h1>
+        <button onclick="showPage('loginPage')" style="background:none; border:none; color:red; cursor:pointer;">← Kembali</button>
+        
+        <label>Jenis Kelompok</label>
+        <select id="jenis_kelompok" onchange="toggleReguler()">
+            <option value="Khusus Tahfidz">Khusus Tahfidz Kelas 3</option>
+            <option value="Reguler">Reguler (Tilawati/Quran)</option>
+        </select>
+
+        <label>Nama Guru</label>
+        <select id="guru">
+            <option>Pak Tebe</option><option>Pak Oky</option><option>Bu Ina</option><option>Pak Anas</option>
+            </select>
+
+        <label>Nama Murid</label>
+        <input type="text" id="nama" placeholder="Nama lengkap siswa">
+
+        <div id="sectionReguler" class="hidden">
+            <label>Jilid Tilawati</label>
+            <input type="text" id="jilid" placeholder="Jilid">
+            <label>Halaman</label>
+            <input type="text" id="halaman" placeholder="Halaman">
+        </div>
+
+        <label>Setoran Hafalan</label>
+        <input type="text" id="hafalan" placeholder="Contoh: An-Naba 1-10">
+
+        <label>Predikat</label>
+        <select id="predikat">
+            <option>A (Sangat Lancar)</option><option>B (Lancar)</option>
+            <option>C (Cukup Lancar)</option><option>D (Murojaah)</option>
+        </select>
+
+        <button class="btn-submit" onclick="kirimData()">SIMPAN DATA</button>
+    </div>
+
+    <div id="ortuPage" class="hidden">
+        <h1>CEK PROGRES ANAK</h1>
+        <button onclick="showPage('loginPage')" style="background:none; border:none; color:red; cursor:pointer;">← Kembali</button>
+        
+        <label>Masukkan Nama Lengkap Anak</label>
+        <input type="text" id="cariNama" placeholder="Contoh: Ahmad Fauzi">
+        
+        <button class="btn-submit" style="background:var(--secondary);" onclick="alert('Fitur pencarian sedang dikoneksikan ke Database...')">CARI DATA</button>
+        
+        <div id="hasilCari" style="margin-top:20px; font-size:14px; color:#333;">
+            <p>Data terakhir akan muncul di sini setelah sistem pencarian aktif.</p>
+        </div>
+    </div>
+
     <div class="footer">Created by TB Azmi Umar Fauzi</div>
 </div>
 
 <script>
-    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+    function showPage(pageId) {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('guruPage').classList.add('hidden');
+        document.getElementById('ortuPage').classList.add('hidden');
+        document.getElementById(pageId).classList.remove('hidden');
+    }
 
-    function kirim() {
-        // Menggunakan URL Apps Script Anda dari screenshot
+    function toggleReguler() {
+        const jenis = document.getElementById('jenis_kelompok').value;
+        const section = document.getElementById('sectionReguler');
+        if(jenis === 'Reguler') section.classList.remove('hidden');
+        else section.classList.add('hidden');
+    }
+
+    function kirimData() {
         const url = "https://script.google.com/macros/s/AKfycbyS71XhdxwAHuX_L_X_21o6FZycUtGphEcBBlQE_s8P4LiyoIabxFp_MpoL2H7cOh5KuQ/exec";
-        
-        const btn = document.getElementById('btnSimpan');
-        const nama = document.getElementById('nama').value;
-        const hafalan = document.getElementById('hafalan').value;
-
-        if(!nama || !hafalan) { alert("Nama dan Hafalan wajib diisi!"); return; }
-
-        btn.innerText = "Menyimpan...";
+        const btn = document.querySelector('.btn-submit');
+        btn.innerText = "Mengirim...";
         btn.disabled = true;
 
         const data = new URLSearchParams({
             guru: document.getElementById('guru').value,
-            kelas: document.getElementById('kelas').value,
-            nama_siswa: nama,
-            hafalan: hafalan,
+            nama_siswa: document.getElementById('nama').value,
+            hafalan: document.getElementById('hafalan').value,
             predikat_hafalan: document.getElementById('predikat').value,
             catatan: '-'
         });
 
         fetch(url, { method: 'POST', mode: 'no-cors', body: data })
-        .then(() => { 
-            alert('Alhamdulillah, Data Berhasil Tersimpan!'); 
-            document.getElementById('nama').value=''; 
-            document.getElementById('hafalan').value=''; 
-            btn.innerText = "SIMPAN DATA";
-            btn.disabled = false;
+        .then(() => {
+            alert('Alhamdulillah, Data Terkirim!');
+            location.reload();
         })
         .catch(err => {
-            alert('Gagal: ' + err);
-            btn.innerText = "SIMPAN DATA";
+            alert('Error: ' + err);
             btn.disabled = false;
         });
     }
 </script>
 </body>
 </html>
-
