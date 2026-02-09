@@ -3,196 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahsil Tahfidz - Teladan</title>
+    <title>Tahsil Teladan Official</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        :root { --primary: #2E7D32; --secondary: #1565C0; --accent: #81C784; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0fdf4; margin: 0; padding: 20px; display: flex; justify-content: center; color: #333; }
-        .card { background: white; width: 100%; max-width: 450px; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid var(--primary); }
-        .hidden { display: none; }
-        h1 { color: var(--primary); text-align: center; font-size: 24px; margin-bottom: 5px; letter-spacing: 1px; }
-        .sub-title { text-align: center; font-size: 13px; color: #666; margin-bottom: 25px; font-style: italic; }
+        :root { --primary: #2E7D32; --secondary: #1565C0; --bg: #f0fdf4; --header-bg: #e8f5e9; }
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #333; }
         
-        /* Button Styles */
-        .btn-mode { width: 100%; padding: 18px; margin: 12px 0; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; color: white; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .btn-guru { background: var(--primary); }
-        .btn-ortu { background: var(--secondary); }
-        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; margin-top: 25px; cursor: pointer; font-size: 16px; }
-        .btn-back { background: none; border: none; color: #e53935; cursor: pointer; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; }
+        /* 1. SPLASH SCREEN (MainActivity.kt) */
+        #splashScreen { background: white; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: fixed; width: 100%; z-index: 9999; }
+        .logo-box { width: 90px; height: 90px; background: var(--primary); border-radius: 22px; display: flex; justify-content: center; align-items: center; color: white; font-size: 45px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-        /* Form Styles */
-        label { display: block; margin-top: 18px; font-weight: 600; font-size: 14px; color: #444; }
-        input, select, textarea { width: 100%; padding: 14px; margin-top: 6px; border: 1.5px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 15px; transition: 0.3s; outline: none; }
-        input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(46, 125, 50, 0.2); }
+        /* 2. LAYOUT PAGES */
+        .page { padding: 20px; display: none; flex-direction: column; align-items: center; min-height: 100vh; box-sizing: border-box; }
+        .container { width: 100%; max-width: 480px; }
         
-        /* Result Styles for Parents */
-        .report-card { background: #f9f9f9; padding: 15px; border-radius: 15px; margin-top: 15px; border-left: 5px solid var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .report-date { font-size: 12px; color: #888; font-weight: bold; }
-        .report-detail { font-size: 15px; margin-top: 5px; line-height: 1.4; }
-        
-        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+        /* 3. CARDS & ITEMS (MuridAdapter.kt) */
+        .group-header { width: 100%; padding: 10px 15px; background: var(--header-bg); color: var(--primary); font-weight: bold; font-size: 13px; border-radius: 10px; margin: 15px 0 8px 0; border-left: 5px solid var(--primary); box-sizing: border-box; }
+        .item-murid { background: white; padding: 18px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; border: 1px solid #eee; }
+        .item-murid:active { transform: scale(0.97); background: #f9f9f9; }
+
+        /* 4. FORM STYLES (InputCapaianActivity.kt) */
+        .card-form { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 10px solid var(--primary); }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 12px; color: #555; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 14px; margin: 6px 0; border: 1.5px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 15px; outline: none; }
+        .char-counter { text-align: right; font-size: 11px; color: #888; margin-bottom: 10px; }
+
+        /* 5. BUTTONS */
+        .btn { width: 100%; padding: 18px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .btn-green { background: var(--primary); color: white; }
+        .btn-blue { background: var(--secondary); color: white; }
+        .btn-back { background: none; color: #888; font-weight: bold; margin-top: 20px; border: 1px solid #ddd; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div id="loginPage">
-        <h1>SISTEM TAHSIL</h1>
-        <p class="sub-title">Cahaya Al-Qur'an di Sekolah Teladan</p>
-        <button class="btn-mode btn-guru" onclick="showPage('guruPage')">MASUK SEBAGAI GURU</button>
-        <button class="btn-mode btn-ortu" onclick="showPage('ortuPage')">MASUK SEBAGAI ORANG TUA</button>
+    <div id="splashScreen">
+        <div class="logo-box">T</div>
+        <h2 style="color: var(--primary); margin-top: 20px;">TAHSIL TELADAN</h2>
+        <p style="color: #999;">Mencetak Generasi Rabbani</p>
     </div>
 
-    <div id="guruPage" class="hidden">
-        <button class="btn-back" onclick="showPage('loginPage')">← KEMBALI</button>
-        <h1>INPUT TAHSIL</h1>
-        
-        <label>Jenis Kelompok</label>
-        <select id="jenis_kelompok" onchange="toggleReguler()">
-            <option value="Khusus Tahfidz">Khusus Tahfidz Kelas 3</option>
-            <option value="Reguler">Reguler (Tilawati/Quran)</option>
-        </select>
-
-        <label>Nama Guru Pengampu</label>
-        <select id="guru">
-            <option>Pak Tebe</option><option>Pak Oky</option><option>Bu Ina</option><option>Pak Anas</option>
-            <option>Bu Mela</option><option>Bu Arrum</option><option>Pak Irhas</option><option>Pak Yusuf</option>
-            <option>Bu Rifa</option><option>Pak Hilmi</option><option>Pak Adieb</option>
-        </select>
-
-        <label>Nama Lengkap Murid</label>
-        <input type="text" id="nama" placeholder="Ketik nama siswa...">
-
-        <div id="sectionReguler" class="hidden">
-            <label>Jilid & Halaman</label>
-            <div style="display:flex; gap:10px;">
-                <input type="text" id="jilid" placeholder="Jilid">
-                <input type="text" id="halaman" placeholder="Hal">
-            </div>
+    <div id="activity_home" class="page">
+        <div class="container" style="text-align: center; margin-top: 60px;">
+            <h2>Selamat Datang</h2>
+            <button class="btn btn-green" onclick="showPage('activity_login_guru')">LOGIN GURU</button>
+            <button class="btn btn-blue" onclick="showPage('activity_login_wali')">LOGIN WALI MURID</button>
+            <p style="margin-top: 50px; font-size: 10px; color: #bbb;">BY TB AZMI UMAR FAUZI</p>
         </div>
-
-        <label>Capaian Setoran (Surah/Ayat)</label>
-        <input type="text" id="hafalan" placeholder="Contoh: An-Naba 1-10">
-
-        <label>Predikat Hafalan</label>
-        <select id="predikat">
-            <option value="A (Sangat Lancar)">A (Sangat Lancar)</option>
-            <option value="B (Lancar)">B (Lancar)</option>
-            <option value="C (Cukup Lancar)">C (Cukup Lancar)</option>
-            <option value="D (Perlu Murojaah)">D (Perlu Murojaah)</option>
-        </select>
-
-        <button class="btn-submit" id="btnSimpan" onclick="kirimData()">SIMPAN LAPORAN</button>
     </div>
 
-    <div id="ortuPage" class="hidden">
-        <button class="btn-back" onclick="showPage('loginPage')" style="color:var(--secondary)">← KEMBALI</button>
-        <h1>PROGRES ANANDA</h1>
-        
-        <label>Cari Nama Lengkap Ananda</label>
-        <input type="text" id="cariNama" placeholder="Ketik nama ananda...">
-        
-        <button class="btn-submit" style="background:var(--secondary);" id="btnCari" onclick="cariData()">LIHAT PROGRES</button>
-        
-        <div id="hasilCari" style="margin-top:20px;">
+    <div id="activity_login_guru" class="page">
+        <div class="container">
+            <h2>Akses Guru</h2>
+            <input type="text" id="etNamaGuru" placeholder="Nama Panggilan">
+            <input type="password" id="etNIY" placeholder="Masukkan NIY">
+            <button class="btn btn-green" onclick="performLoginGuru()">MASUK</button>
+            <button class="btn btn-back" onclick="showPage('activity_home')">KEMBALI</button>
+        </div>
+    </div>
+
+    <div id="activity_login_wali" class="page">
+        <div class="container">
+            <h2>Laporan Ananda</h2>
+            <input type="text" id="etNamaAnanda" placeholder="NAMA LENGKAP KAPITAL">
+            <input type="date" id="etTglLahir">
+            <button class="btn btn-blue" onclick="performLoginWali()">CEK PROGRES</button>
+            <button class="btn btn-back" onclick="showPage('activity_home')">KEMBALI</button>
+        </div>
+    </div>
+
+    <div id="activity_daftar_murid" class="page">
+        <div class="container">
+            <h3 id="welcomeGuru" style="color: var(--primary);">Selamat Bertugas</h3>
+            <button class="btn btn-blue" onclick="downloadRekap()" style="font-size: 14px; margin-bottom: 15px;">UNDUH REKAP EXCEL</button>
+            <div id="rvMurid"></div>
+            <button class="btn btn-back" onclick="location.reload()">LOGOUT</button>
+        </div>
+    </div>
+
+    <div id="activity_input" class="page">
+        <div class="container card-form">
+            <h3 id="targetNama" style="margin: 0; color: var(--primary);"></h3>
+            <p id="targetKls" style="font-size: 12px; color: #999; margin-top: 5px;"></p>
+            
+            <div id="layoutReguler">
+                <label>Tilawati / Al-Qur'an</label>
+                <div style="display: flex; gap: 8px;">
+                    <select id="spJilid"><option>Pilih Jilid</option><option>Jilid 1</option><option>Jilid 2</option><option>Jilid 3</option><option>Jilid 4</option><option>Jilid 5</option><option>Jilid 6</option></select>
+                    <input type="text" id="spHalaman" placeholder="Hal">
+                </div>
+                <select id="spPredikatReguler" onchange="autoGenerateNote()"><option>Pilih Nilai</option><option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option></select>
             </div>
+
+            <label>Setoran Hafalan</label>
+            <input type="text" id="etHafalan" placeholder="Contoh: An-Naba 1-10">
+            <select id="spPredikatHafalan" onchange="autoGenerateNote()"></select>
+
+            <div id="layoutCatatan">
+                <label>Catatan Guru (Otomatis)</label>
+                <textarea id="etCatatan" rows="4" maxlength="360" oninput="updateCounter()"></textarea>
+                <div id="charCounter" class="char-counter">0/360</div>
+            </div>
+
+            <button class="btn btn-green" id="btnSimpan" onclick="simpanData()">SIMPAN DATA</button>
+            <button class="btn btn-back" onclick="showPage('activity_daftar_murid')">BATAL</button>
+        </div>
     </div>
 
-    <div class="footer">Created by TB Azmi Umar Fauzi<br>Sekolah Teladan Yogyakarta</div>
-</div>
+    <div id="activity_hasil_wali" class="page">
+        <div class="container">
+            <h3 id="tvNamaAnanda" style="color: var(--secondary);">Laporan Capaian</h3>
+            <div id="listProgres"></div>
+            <button class="btn btn-back" onclick="location.reload()">KELUAR</button>
+        </div>
+    </div>
 
 <script>
-    // URL Web App Google Script Bapak
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbyS71XhdxwAHuX_L_X_21o6FZycUtGphEcBBlQE_s8P4LiyoIabxFp_MpoL2H7cOh5KuQ/exec";
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbzRsZ2ZVFUeoeyGT2jVtEBrqzq5zDE904vNGBwDjdL_okndWBRt6_LdZLMcP_SAeC42/exec";
+    let activeGuru = ""; let selectedSiswa = {};
 
-    function showPage(pageId) {
-        document.getElementById('loginPage').classList.add('hidden');
-        document.getElementById('guruPage').classList.add('hidden');
-        document.getElementById('ortuPage').classList.add('hidden');
-        document.getElementById(pageId).classList.remove('hidden');
+    // DATABASE GURU & NIY
+    const dbGuru = { "Pak Tebe": "020694", "Pak Yusuf": "040393", "Bu Arrum": "280700", "Pak Irhas": "100801", "Bu Acha": "110499", "Pak Adieb": "140491", "Bu Rifa": "030198", "Pak Anas": "260797", "Bu Mela": "220896", "Bu Ina": "070593", "Pak Hilmi": "020493", "Pak Oky": "121096" };
+
+    // DATABASE SISWA (339 Nama)
+    const dbSiswa = { "ABDULLAH HAMIM HARIMURTI": "2019-07-14", "ADIBA SHAKILA QORRI AINA AHMAD": "2019-02-10", "AHMAD YUSUF DANISWORO": "2016-12-11", "ALMAHYRA SHANEISHA ANINDIRA ISA S": "2019-06-22", "AMANULLAH ZAIN": "2019-05-02" /* Tambahkan sisa data lainnya di sini sesuai format */ };
+
+    // DATABASE MURID PER GURU
+    const dbMuridGuru = {
+        "Pak Oky": [ {n: "Ahmad Yusuf Danisworo", k: "Kelas 1A", t: "Reguler"}, {n: "Abdullah Hamim Harimurti", k: "Kelas 1A", t: "Reguler"}, {n: "Adiba Ayunazahra Mahendra", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"} ],
+        "Pak Tebe": [ {n: "Freya Safira Yasmin Fitaly", k: "Kelas 1B", t: "Reguler"}, {n: "Al Kahfi Hadianto", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"} ]
+    };
+
+    // SPLASH TIMER (MainActivity.kt)
+    setTimeout(() => { document.getElementById('splashScreen').style.display = 'none'; showPage('activity_home'); }, 3000);
+
+    function showPage(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'flex'; }
+
+    function performLoginGuru() {
+        const n = document.getElementById('etNamaGuru').value; const p = document.getElementById('etNIY').value;
+        if (dbGuru[n] === p) { activeGuru = n; document.getElementById('welcomeGuru').innerText = "Ust/Ustzh " + n; renderMurid(); showPage('activity_daftar_murid'); } 
+        else { alert("Login Gagal!"); }
     }
 
-    function toggleReguler() {
-        const jenis = document.getElementById('jenis_kelompok').value;
-        const section = document.getElementById('sectionReguler');
-        if(jenis === 'Reguler') section.classList.remove('hidden');
-        else section.classList.add('hidden');
-    }
-
-    function kirimData() {
-        const btn = document.getElementById('btnSimpan');
-        const nama = document.getElementById('nama').value;
-        if(!nama) { alert("Nama murid tidak boleh kosong!"); return; }
-
-        btn.innerText = "Mengirim...";
-        btn.disabled = true;
-
-        const params = new URLSearchParams({
-            guru: document.getElementById('guru').value,
-            nama_siswa: nama,
-            hafalan: document.getElementById('hafalan').value,
-            predikat_hafalan: document.getElementById('predikat').value,
-            jenis_kelompok: document.getElementById('jenis_kelompok').value,
-            jilid: document.getElementById('jilid').value || '-',
-            halaman: document.getElementById('halaman').value || '-',
-            catatan: '-'
-        });
-
-        fetch(webAppUrl, { method: 'POST', mode: 'no-cors', body: params })
-        .then(() => {
-            alert('Alhamdulillah, Laporan ' + nama + ' berhasil disimpan.');
-            location.reload();
-        })
-        .catch(err => {
-            alert('Gagal mengirim: ' + err);
-            btn.disabled = false;
-            btn.innerText = "SIMPAN LAPORAN";
-        });
-    }
-
-    function cariData() {
-        const nama = document.getElementById('cariNama').value;
-        const hasilDiv = document.getElementById('hasilCari');
-        const btn = document.getElementById('btnCari');
-
-        if(nama.length < 3) { alert("Ketik minimal 3 huruf nama ananda"); return; }
-
-        btn.innerText = "Mencari...";
-        hasilDiv.innerHTML = "<p style='text-align:center'>Mencari di database...</p>";
-
-        fetch(webAppUrl + "?nama=" + nama)
-        .then(response => response.json())
-        .then(data => {
-            btn.innerText = "LIHAT PROGRES";
-            if(data.length === 0) {
-                hasilDiv.innerHTML = "<p style='color:red; text-align:center'>Data ananda belum ditemukan.</p>";
-                return;
+    function renderMurid() {
+        const rv = document.getElementById('rvMurid'); rv.innerHTML = "";
+        const list = dbMuridGuru[activeGuru] || [];
+        list.forEach((m, idx) => {
+            // Header Logic (MuridAdapter.kt)
+            if (idx === 0 || m.t !== list[idx-1].t) {
+                const h = document.createElement('div'); h.className = "group-header"; h.innerText = m.t; rv.appendChild(h);
             }
-            let html = "<p style='font-size:14px; font-weight:bold;'>Riwayat Setoran Terbaru:</p>";
-            data.forEach(item => {
-                html += `
-                <div class="report-card">
-                    <span class="report-date">${item.tanggal}</span>
-                    <div class="report-detail">
-                        <b>Hafalan:</b> ${item.hafalan}<br>
-                        <b>Predikat:</b> <span style="color:var(--primary)">${item.predikat}</span><br>
-                        <small>Pengampu: ${item.guru}</small>
-                    </div>
-                </div>`;
-            });
-            hasilDiv.innerHTML = html;
-        })
-        .catch(err => {
-            btn.innerText = "LIHAT PROGRES";
-            hasilDiv.innerHTML = "<p style='color:red'>Gagal memuat data. Pastikan URL Apps Script benar.</p>";
+            const item = document.createElement('div'); item.className = "item-murid";
+            item.innerHTML = `<div><b>${m.n}</b><br><small>${m.k}</small></div><div class="btn-pdf" onclick="event.stopPropagation(); window.open('${webAppUrl}?action=pdf&name=${m.n}')">PDF</div>`;
+            item.onclick = () => openInput(m);
+            rv.appendChild(item);
         });
     }
 
-    // Registrasi PWA agar bisa diinstal di HP
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
+    function openInput(m) {
+        selectedSiswa = m;
+        document.getElementById('targetNama').innerText = m.n; document.getElementById('targetKls').innerText = m.k;
+        const isKhusus = m.t.includes("Khusus");
+        document.getElementById('layoutReguler').className = isKhusus ? "hidden" : "";
+        document.getElementById('layoutCatatan').className = isKhusus ? "hidden" : "";
+        document.getElementById('spPredikatHafalan').innerHTML = isKhusus 
+            ? '<option>A (Sangat Lancar)</option><option>B (Lancar)</option><option>C (Cukup Lancar)</option><option>D (Perlu Murojaah)</option>'
+            : '<option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option>';
+        showPage('activity_input');
     }
+
+    // AUTO NOTE LOGIC (InputCapaianActivity.kt)
+    function autoGenerateNote() {
+        if(selectedSiswa.t.includes("Khusus")) return;
+        const score = (p) => p.includes("A") ? 3 : p.includes("B") ? 2 : p.includes("C") ? 1 : 0;
+        const avg = (score(document.getElementById('spPredikatReguler').value) + score(document.getElementById('spPredikatHafalan').value)) / 2;
+        const pred = avg >= 2.5 ? "sangat baik" : avg >= 1.5 ? "baik" : "cukup baik";
+        document.getElementById('etCatatan').value = `Alhamdulillah, ananda mengikuti tahfidz dengan ${pred}. Mohon pendampingan Bapak/Ibu agar ananda istiqomah.`;
+        updateCounter();
+    }
+
+    function updateCounter() {
+        const len = document.getElementById('etCatatan').value.length;
+        document.getElementById('charCounter').innerText = `${len}/360`;
+        document.getElementById('charCounter').style.color = len >= 350 ? "red" : "#888";
+    }
+
+    function performLoginWali() {
+        const n = document.getElementById('etNamaAnanda').value.toUpperCase(); const t = document.getElementById('etTglLahir').value;
+        if (dbSiswa[n] === t) { document.getElementById('tvNamaAnanda').innerText = "Laporan " + n; showPage('activity_hasil_wali'); fetchResults(n); }
+        else { alert("Data tidak ditemukan."); }
+    }
+
+    function fetchResults(nama) {
+        const list = document.getElementById('listProgres'); list.innerHTML = "Memuat data...";
+        fetch(webAppUrl + "?nama=" + nama).then(res => res.json()).then(data => {
+            if(data.length === 0) return list.innerHTML = "Belum ada riwayat.";
+            let h = ""; data.forEach(d => { h += `<div class="item-murid" style="flex-direction:column; align-items:start;"><b>${d.tanggal}</b><span>Hafalan: ${d.hafalan}</span><span>Predikat: ${d.predikat}</span></div>`; });
+            list.innerHTML = h;
+        });
+    }
+
+    function simpanData() {
+        const btn = document.getElementById('btnSimpan'); btn.innerText = "Menyimpan..."; btn.disabled = true;
+        const params = new URLSearchParams({ guru: activeGuru, nama_siswa: selectedSiswa.n, kls: selectedSiswa.k, hafalan: document.getElementById('etHafalan').value, predikat_hafalan: document.getElementById('spPredikatHafalan').value, catatan: document.getElementById('etCatatan').value || "-" });
+        fetch(webAppUrl, { method: 'POST', mode: 'no-cors', body: params }).then(() => { alert("Tersimpan!"); showPage('activity_daftar_murid'); btn.disabled = false; btn.innerText = "SIMPAN DATA"; });
+    }
+
+    function downloadRekap() { window.open(webAppUrl + "?action=download&guru=" + activeGuru, '_blank'); }
 </script>
 </body>
 </html>
-
