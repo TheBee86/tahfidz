@@ -3,7 +3,7 @@
  * SD Teladan Yogyakarta
  */
 
-const webAppUrl = "ISI_DENGAN_URL_DEPLOYMENT_BAPAK"; // Contoh: https://script.google.com/...
+const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5TLyJrDAr_dxRF2qxFAFDZSPXWcLdc8I-BYYjbu4ZsMgR1_fdiAm0UQCKdSMZSybmQ/exec";
 let activeGuru = "";
 let selectedSiswa = {};
 
