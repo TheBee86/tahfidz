@@ -47,14 +47,38 @@ function renderMuridList() {
     const container = document.getElementById('rvMurid');
     container.innerHTML = "";
     
-    // Urutkan Abjad
-    const list = (dbMuridGuru[activeGuru] || []).sort((a, b) => a.n.localeCompare(b.n));
+    // 1. Ambil data asli dari database
+    let listRaw = dbMuridGuru[activeGuru] || [];
 
-    list.forEach((m, idx) => {
-        if (idx === 0 || m.t !== list[idx-1].t) {
+    // 2. Logika Pengurutan Kustom
+    listRaw.sort((a, b) => {
+        // Aturan A: Cek apakah item adalah 'Khusus Tahfidz'
+        const isAKhusus = a.t.includes("Khusus Tahfidz");
+        const isBKhusus = b.t.includes("Khusus Tahfidz");
+
+        // Jika satu khusus dan satu reguler, reguler harus di atas (return -1)
+        if (!isAKhusus && isBKhusus) return -1;
+        if (isAKhusus && !isBKhusus) return 1;
+
+        // Aturan B: Jika sama-sama Reguler, urutkan berdasarkan KELAS dulu
+        if (!isAKhusus && !isBKhusus) {
+            if (a.k !== b.k) {
+                return a.k.localeCompare(b.k); // Urut Kelas: 1A, 1B, 2C, dst
+            }
+            return a.n.localeCompare(b.n); // Jika kelas sama, urut Nama (Abjad)
+        }
+
+        // Aturan C: Jika sama-sama Khusus Tahfidz, cukup urut Nama
+        return a.n.localeCompare(b.n);
+    });
+
+    // 3. Render ke HTML dengan Header Kelompok
+    listRaw.forEach((m, idx) => {
+        // Munculkan Header jika tipe kelompok berubah
+        if (idx === 0 || m.t !== listRaw[idx-1].t) {
             const header = document.createElement('div');
             header.className = "group-header";
-            header.innerText = m.t || "Reguler";
+            header.innerText = m.t;
             container.appendChild(header);
         }
 
