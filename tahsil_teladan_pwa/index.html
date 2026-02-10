@@ -3,60 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahsil Teladan - Official App</title>
-    <style>
-        :root { --primary: #2E7D32; --secondary: #1565C0; --bg: #f0fdf4; --header-bg: #e8f5e9; }
-        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: #333; }
-        
-        /* 1. SPLASH SCREEN (MainActivity.kt) */
-        #splashScreen { background: white; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: fixed; width: 100%; z-index: 9999; }
-        .logo-box { width: 90px; height: 90px; background: var(--primary); border-radius: 22px; display: flex; justify-content: center; align-items: center; color: white; font-size: 45px; font-weight: bold; }
-
-        /* 2. PAGES LAYOUT */
-        .page { padding: 20px; display: none; flex-direction: column; align-items: center; min-height: 100vh; box-sizing: border-box; }
-        .container { width: 100%; max-width: 480px; }
-        
-        /* 3. LIST MURID (MuridAdapter.kt) */
-        .group-header { width: 100%; padding: 10px 15px; background: var(--header-bg); color: var(--primary); font-weight: bold; font-size: 13px; border-radius: 10px; margin: 15px 0 8px 0; border-left: 5px solid var(--primary); box-sizing: border-box; }
-        .item-murid { background: white; padding: 18px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; border: 1px solid #eee; width: 100%; box-sizing: border-box; }
-        .item-murid:active { transform: scale(0.97); background: #f9f9f9; }
-
-        /* 4. FORM STYLES (InputCapaianActivity.kt) */
-        .card-form { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 10px solid var(--primary); width: 100%; box-sizing: border-box; }
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 12px; color: #555; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 14px; margin: 6px 0; border: 1.5px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 15px; outline: none; }
-        .char-counter { text-align: right; font-size: 11px; color: #888; margin-top: -5px; margin-bottom: 10px; }
-
-        /* 5. BUTTONS */
-        .btn { width: 100%; padding: 18px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
-        .btn-green { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2); }
-        .btn-blue { background: var(--secondary); color: white; }
-        .btn-back { background: none; color: #888; font-weight: bold; margin-top: 20px; border: 1px solid #ddd; }
-        .hidden { display: none; }
-    </style>
+    <title>Tahsil Teladan PWA</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <div id="splashScreen">
         <div class="logo-box">T</div>
-        <h2 style="color: var(--primary); margin-top: 20px;">TAHSIL TELADAN</h2>
+        <h2 style="color: #2E7D32; margin-top: 20px;">TAHSIL TELADAN</h2>
         <p style="color: #999;">Mencetak Generasi Rabbani</p>
     </div>
 
     <div id="activity_home" class="page">
         <div class="container" style="text-align: center; margin-top: 60px;">
-            <img src="https://via.placeholder.com/100/2E7D32/FFFFFF?text=T" style="border-radius: 20px; margin-bottom: 20px;">
-            <h2>Portal Tahfidz Online</h2>
+            <h2>Portal Monitoring</h2>
             <button class="btn btn-green" onclick="showPage('activity_login_guru')">LOGIN GURU</button>
             <button class="btn btn-blue" onclick="showPage('activity_login_wali')">LOGIN WALI MURID</button>
-            <p style="margin-top: 50px; font-size: 10px; color: #bbb;">APPS BY TB AZMI UMAR FAUZI</p>
+            <p style="margin-top: 50px; font-size: 10px; color: #bbb;">APPS BY THE BEE</p>
         </div>
     </div>
 
     <div id="activity_login_guru" class="page">
         <div class="container">
             <h2>Akses Guru</h2>
-            <input type="text" id="etNamaGuru" placeholder="Nama Panggilan">
+            <input type="text" id="etNamaGuru" placeholder="Nama Panggilan (Contoh: Pak Tebe)">
             <input type="password" id="etNIY" placeholder="Masukkan NIY">
             <button class="btn btn-green" onclick="performLoginGuru()">MASUK</button>
             <button class="btn btn-back" onclick="showPage('activity_home')">KEMBALI</button>
@@ -65,19 +35,17 @@
 
     <div id="activity_login_wali" class="page">
         <div class="container">
-            <h2>Akses Orang Tua</h2>
-            <label>Nama Lengkap Ananda (Kapital)</label>
-            <input type="text" id="etNamaAnanda" placeholder="CONTOH: ABDULLAH HAMIM">
-            <label>Tanggal Lahir Ananda</label>
+            <h2>Laporan Ananda</h2>
+            <input type="text" id="etNamaAnanda" placeholder="NAMA LENGKAP (KAPITAL)">
             <input type="date" id="etTglLahir">
-            <button class="btn btn-blue" onclick="performLoginWali()">LIHAT LAPORAN</button>
+            <button class="btn btn-blue" onclick="performLoginWali()">CEK PROGRES</button>
             <button class="btn btn-back" onclick="showPage('activity_home')">KEMBALI</button>
         </div>
     </div>
 
     <div id="activity_daftar_murid" class="page">
         <div class="container">
-            <h3 id="welcomeGuru" style="color: var(--primary);">Assalamu'alaikum</h3>
+            <h3 id="welcomeGuru" style="color: #2E7D32;"></h3>
             <div id="rvMurid"></div>
             <button class="btn btn-back" onclick="location.reload()">LOGOUT</button>
         </div>
@@ -85,33 +53,33 @@
 
     <div id="activity_input" class="page">
         <div class="container card-form">
-            <h3 id="targetNama" style="margin: 0; color: var(--primary);"></h3>
+            <h3 id="targetNama" style="margin: 0; color: #2E7D32;"></h3>
             <p id="targetKls" style="font-size: 12px; color: #999; margin: 5px 0;"></p>
             
-            <div id="layoutTilawati">
-                <label>Tilawati / Al-Qur'an</label>
+            <div id="layoutReguler">
+                <label>Tilawati / Qur'an</label>
                 <div style="display: flex; gap: 8px;">
                     <select id="spJilid">
                         <option>Pilih Jilid</option>
                         <option>Jilid 1</option><option>Jilid 2</option><option>Jilid 3</option>
-                        <option>Jilid 4</option><option>Jilid 5</option><option>Jilid 6</option><option>Qur'an</option>
+                        <option>Jilid 4</option><option>Jilid 5</option><option>Jilid 6</option>
+                        <option>Qur'an</option>
                     </select>
-                    <select id="spHalaman">
-                        <option>Pilih Hal</option>
-                        </select>
+                    <input type="text" id="etHalaman" placeholder="Hal">
                 </div>
-                <select id="spPredikatReguler" onchange="autoGenerateNote()"><option>Pilih Nilai</option><option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option></select>
+                <select id="spPredikatReguler" onchange="autoGenerateNote()">
+                    <option value="">Pilih Predikat</option>
+                    <option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option>
+                </select>
             </div>
 
             <label>Tahfidz (Hafalan)</label>
             <input type="text" id="etHafalan" placeholder="Contoh: An-Naba 1-10">
             <select id="spPredikatHafalan" onchange="autoGenerateNote()"></select>
 
-            <div id="layoutCatatan">
-                <label>Catatan Guru (Otomatis)</label>
-                <textarea id="etCatatan" rows="4" maxlength="360" oninput="updateCharCounter()"></textarea>
-                <div id="charCounter" class="char-counter">0/360</div>
-            </div>
+            <label>Catatan Guru (Auto)</label>
+            <textarea id="etCatatan" rows="4" maxlength="360" oninput="updateCharCounter()"></textarea>
+            <div id="charCounter" class="char-counter">0/360</div>
 
             <button class="btn btn-green" id="btnSimpan" onclick="simpanData()">SIMPAN</button>
             <button class="btn btn-back" onclick="showPage('activity_daftar_murid')">BATAL</button>
@@ -120,145 +88,22 @@
 
     <div id="activity_hasil_wali" class="page">
         <div class="container">
-            <h3 id="tvAnandaHeader" style="color: var(--secondary);">Laporan Capaian</h3>
+            <h3 id="tvAnandaTitle" style="color: #1565C0;"></h3>
             <div id="listProgres"></div>
             <button class="btn btn-back" onclick="location.reload()">KELUAR</button>
         </div>
     </div>
 
-<script>
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbzRsZ2ZVFUeoeyGT2jVtEBrqzq5zDE904vNGBwDjdL_okndWBRt6_LdZLMcP_SAeC42/exec";
-    let loginGuru = ""; let selectedSiswa = {};
+    <script src="js/database-guru.js"></script>
+    <script src="js/database-siswa.js"></script>
+    <script src="js/app-logic.js"></script>
 
-    // 1. DATABASE GURU & NIY
-    const dbGuru = { "Pak Tebe": "020694", "Pak Yusuf": "040393", "Bu Arrum": "280700", "Pak Irhas": "100801", "Bu Acha": "110499", "Pak Adieb": "140491", "Bu Rifa": "030198", "Pak Anas": "260797", "Bu Mela": "220896", "Bu Ina": "070593", "Pak Hilmi": "020493", "Pak Oky": "121096" };
-
-    // 2. DATABASE WALI (339 SISWA - Tgl Lahir)
-    const dbSiswa = { 
-        "ABDULLAH HAMIM HARIMURTI": "2019-07-14", "ADIBA SHAKILA QORRI AINA AHMAD": "2019-02-10", "AHMAD YUSUF DANISWORO": "2016-12-11", "ALMAHYRA SHANEISHA ANINDIRA ISA S": "2019-06-22", "AMANULLAH ZAIN": "2019-05-02", "ARKAN ANGGARA RAHMADI": "2018-03-06", "ASHALINA YUMNAA NALADHIPA SUDRAJAT": "2018-09-05", "ASKA DANISH KURNIAWAN": "2018-12-19", "AULIA ZULFA MUTHII'AH": "2018-07-30", "AZKA ANANDA RAMADHAN": "2018-06-12", "AZKA BHUMI IBRAHIM": "2018-07-06", "AZRIEL DHANADIPATI ALAM": "2019-04-26", "BARRA AULIAN RAFISQY": "2018-12-31", "CAHAYA AL JANNAH MARTANTA": "2019-02-07", "DINESHCARA QIANCY FASYIN": "2019-04-16", "DZAKIYYA LAIBA ZYVA": "2018-07-29", "ELSHANINA ALRAFICA": "2019-03-18", "KAIVAN ELVANO BIMANTORO": "2019-07-09", "KALEENA AYUDHYA RAMADHANI": "2018-06-13", "KHALISHA FAHMA ZAHIDA": "2018-11-13", "KIRANI ALMAHYRA SHANUM": "2018-03-24", "KUNTUM ADREENA ALESHA SENJA": "2019-10-14", "MUHAMMAD ARSYAD HAMZAH": "2018-02-10", "MUHAMMAD DEVAN RAFANDRA": "2018-10-20", "MUHAMMAD GIBRAN KAREEM": "2018-10-27", "MUHAMMAD HAYKAL LATIF": "2018-11-05", "OSVALDY RISHAD ANDRIYANTO": "2018-05-29", "RIVERO SYAM ZAFRAN": "2018-09-03", "SHAZFA ALRAFAILAH AHMADI": "2019-10-19", "SKYLEEN ARUNA SEIRANALA SALSABILLA": "2019-05-20", "ABRISAM REYNAND PUTRA MUDHITA": "2019-05-12", "AESHAA MIKAYLA FARADEEVA": "2018-06-06", "AGHA AHNAF ARRAYYAN": "2018-08-15", "ANDI AZKA RAFFASYA RUM": "2017-08-09", "ARRAYA BANYU MANGGALA KUNADI": "2018-05-19", "ASSYIFA SHAFIYYA LINANDO": "2018-03-13", "AURIGA RHEANDRA TAVARINO": "2019-09-19", "AZZAM ABDULLAH TAFTAZANI": "2018-06-21", "CHANTIKA QUEEN ARSYILA": "2018-08-12", "DEARA SHAHIA ANINDRI": "2019-03-20", "ERSYILA SAIBUYUN WIRSON": "2018-10-30", "FREYA SAFIRA YASMIN FITALY": "2018-07-17", "GADING GHAZALI": "2019-07-12", "GANESH HAMIZZHAFRAN": "2018-12-21", "GHASSANI ZIANKA ELSHANUM": "2018-10-07", "HAFID RABBANI": "2018-08-27", "HAFIZHAH ACITYA SARASWATI": "2018-11-21", "HAUFANHAZZA GHANIYANDRA": "2019-12-17", "KANIA FADILA": "2018-09-09", "KENNAN EL ZAFRAN": "2017-04-10", "MUHAMMAD AHSAN LAKSONO": "2017-08-15", "MUHAMMAD KALANDRA ABDILLAH WASESO": "2019-05-12", "MUHAMMAD KHAISAN MUMTAZ": "2018-04-27", "MUHAMMAD OKTAF ADDYAGANI": "2019-10-07", "MUHAMMAD SAID HADYANDHIKA PURWANTO": "2018-10-14", "NESYA ANYA ZUKHRUFA": "2018-08-10", "QIANDRA HUMAIRA PRADITYA": "2019-06-12", "RAYHANA AL MAHEERA ARDIANSYAH": "2018-07-14", "SARAH MECCA ALEXANDRA": "2018-09-12", "SHUMAILA SHANUM BAWONO": "2017-01-17", "ADIBA PUTRI DIANDRA": "2018-01-09", "ADILA MUZZAHIRA SYA'BAN": "2018-04-17", "AHMAD HAIDAR ABDURRAHMAN HADI": "2018-12-18", "A'ISYAH INARA SAPUTRA": "2018-04-04", "AKIRA MIQDAM NARENDRA": "2018-07-04", "ALKHALIFI HARITS WIDODO": "2018-03-01", "ANINDYA RASIKA SAFIRA": "2017-10-21", "AULIA IBRAHIM ALFARISI": "2018-01-24", "FARAISA ALMAHYRA HARTADI": "2019-04-19", "GIANDRA YATRISNA AFIANO": "2018-08-22", "ITZEL ARSYILA DELPHYS": "2017-03-10", "IZA MUHANA HASAN": "2018-07-22", "MUZAFFAR HAMIZAN WIDHIATNA": "2019-06-12", "NADIA SYAFIRA": "2017-06-01", "NARARYA WIDAYAKA LISTYAWAN": "2017-06-19", "NAYRA MAFAZA MUKHBITA BIANTARA": "2017-06-22", "NING LAYA PANDANMAWAR": "2018-09-21", "R. DIRGA DANADYAKSA": "2017-10-21", "RAEFAL KENAN ATHARRAZKA LUKITANINGRAT": "2018-12-18", "RAFIF NAUFAL BYANTARA": "2017-06-29", "RANIA AFSHEENA QANITA WAHDONO": "2018-10-08", "RAYHAN FAUZI BASKORO": "2018-06-27", "RAZZAN DARPA YOWANO": "2017-12-12", "RUMAISHA KAHEESHA HAKIM": "2017-04-26", "SABRAN ABHIMATA ENDARU": "2018-06-19", "SABRIYA BITUMINA KINANDARI": "2017-01-22", "SERAPHINE KEEYONA RIANTO": "2017-08-04", "ZAREENA ALMEERA AZKADINA MUKHSINUN": "2018-12-28", "ZIOSHAKA ARTANABIL PRADANA": "2018-09-02", "AHMAD RAYHAN ADYARIZKI": "2018-08-28", "ANNISA MISAKI AL HAKIM": "2019-03-19", "AQILLA MAHISKA VIRENDRA": "2019-07-13", "AQLAN HAIDAR TSAQIB": "2018-05-11", "ARCELLO RADEVA KURNIAWAN": "2018-10-04", "ARVINO NAZRIEL RASHAAD FREDIAN": "2019-07-04", "ASHALINA ANISA KHADIJA": "2017-12-23", "ELIF ANDARESTYA MAYLAFAISHA": "2018-05-28", "GHEADHIMAS YUMNA ZAVIERA": "2017-01-17", "KEYZA ALFARISI RUMI": "2018-08-17", "KHALIFA ARSHAKA SETYOJATI": "2018-06-01", "KHAULAH SALMA NABILA": "2018-08-04", "KYNAN AZKALE RAHMAN": "2017-07-26", "MAHESWARA ARGANTA PRADITYA": "2018-11-23", "MAITREYA SAKALA PRASTIYO": "2019-06-14", "MAIZA ALMAHYRA PUTRI YUDHISTIRA": "2018-09-25", "MUHAMMAD ARNIKO ICHIMOKU MOKOKU": "2018-06-26", "MUHAMMAD AZZAM GIANDRA": "2019-04-29", "MUHAMMAD UWAIS AL QARNI": "2018-10-09", "MUHAMMAD YAHYA AL MALIQ": "2019-06-16", "MUHAMMAD ZHAFRAN SYATHIR WIJAYA": "2017-05-20", "NUR ALULA ZAHRAN RABBANI": "2018-10-28", "PRAGNYA GRAHITA NURAISYA": "2018-10-26", "QANITA ZEA KAYLILA RAFSANJANI": "2018-08-13", "RAFFASYA AZAM FAEZA RAHARJO": "2018-01-13", "RAUFFA YAHYA AL FATIH": "2019-03-28", "RESYAKILLA NOUSHAFARINA PUTRI NOVINDRA": "2018-09-07", "SYARIFAH AISYA HALA FARISHA": "2018-07-06", "TSABINA LATISYA ORLIN FRANSISCO": "2019-05-25", "ABDULLAH ISA SULISTIONO": "2018-05-10", "ARKAN GHIFARI ALFARIZI RAMADHAN": "2018-05-11", "ARSA BHIRU DANISWARA": "2018-02-07", "ARSHAKA RASENDRIA": "2018-03-01", "AULIAN TYAGA BARANANTA": "2018-02-01", "AZZAHRA RIZQYA TSANY": "2018-01-18", "BANYUBIRU ADHYASTA MAHANIPUNA": "2018-02-10", "BESTARILA BENZITA RACHDIWASITTA RACHMAN": "2018-02-16", "BIANCA PUTRI KINARIAN": "2018-06-06", "DIMAS RAMDHAN NASRULLAH": "2018-06-10", "FARHAN FAYADA ILMI": "2017-07-01", "FELICYA DAFINA ALKA": "2018-01-24", "GAVINDRA ABIMANA": "2018-07-29", "HAMID RASYID PRABAWA": "2018-06-21", "HISHAM DINAN ATA ALGIZA": "2018-07-06", "IBRAHIM ALI GAZA": "2018-01-22", "ILMIA ACITYA DAHAYU": "2017-10-23", "ILTIZAM HUSAINI LANGSA": "2018-05-10", "KENAN MAHIJA RUPAWAN": "2018-03-01", "MAZAYA TSANIA FAUZIAH": "2018-03-21", "MUHAMMAD ARFAN AL FATIH": "2018-01-20", "RUMAISHA NADA MALAYEKA": "2018-04-10", "SAMUDRA DHARMA ADIWANGSA": "2018-02-26", "SARAH MECCA HARHARAH": "2018-05-23", "SHEERAN LATISHYA NAIMATAMA": "2018-10-14", "SYAMIL ALBIDHIRA PRATISARA": "2018-07-14", "TSANIYA QONITA SAMBODO": "2018-05-23", "ALEXANDER DHAFIN GHIFARI SHAKEIL": "2018-03-26", "ALVIRA GITANIA PUTRI KHARIESTAMA": "2018-04-21", "ARINDA SATYA WICAKSONO": "2018-03-24", "ARONDRA KARNA DION ADRIAND": "2017-10-13", "BRYAN XAVIER AL GHIFARI": "2018-06-11", "DELANO ALVARENDRA DIODY": "2018-07-29", "FEEROZAH ADEEVA RIZTA": "2018-09-01", "FIRASH RAMADHAN ALJUNNAH IRVANI": "2018-05-23", "IBRAHIM BAGASKORO D. SAKSAMA": "2018-02-15", "KINANTI ARMADANI": "2018-07-22", "MAULIDYA ALMEERA WILANTARA": "2018-06-11", "MEDINA LITUHAYU SHALEEHA SYAHYAMAN": "2018-02-10", "MUHAMMAD DARIUS EL SHAREEF KHAYRUAGUNG": "2018-01-14", "MUHAMMAD MUZAKKI AL FATIH": "2018-05-01", "NASHIRA YUMNA ALMAODHI": "2018-02-01", "NAYAZKA AILEAN FARIZKY": "2018-03-21", "NESYA ARDELIA": "2017-10-13", "PARADUTA BHODROWANTO SURYONINGRAT": "2017-11-23", "RADEN KAIRUPAN ABDUH HUMAYUN": "2018-03-13", "RAFFASYA ACHMAD RASYA": "2018-02-22", "RAINA KAYLA ALEXANDRA": "2018-09-12", "RAMADHANISA NUR SHAHIA": "2018-05-27", "REYNAND ARKA ZAVIER": "2018-05-20", "SHANUM ALMEERA WIBOWO": "2018-03-21", "UMAR SYAFIQ RABBANI": "2017-10-06", "VIRENDRA GIBRAN TOSCA": "2018-06-26", "ZYAN ABDUL MALIK": "2018-03-04", "ADIBA SHAKILLA AZZAHRA": "2018-02-13", "AKSARA PENDAR ANDARU": "2018-06-14", "ALESHA ALMAHYRA JINGGA": "2018-05-13", "ARETHA CANTYANA ZYAN": "2018-06-20", "ARTANABIL DANIYAL ZAHRAN": "2018-06-21", "AZKA AMIRA RAHMAN": "2018-04-06", "AZRINA ZAHRA PUTRI ARDIYANI": "2018-03-30", "BRIAN RAMADHAN ADITIYANTO": "2018-06-22", "FABIAN AZKA ATHARIZQY PAMUNGKAS": "2018-02-28", "GIANDRA ADYATAMA SUSANTO": "2018-04-14", "GIBRAN RADHIKA WIRATAMA": "2018-06-20", "GIOVANNI KAIRAN ABRISAM": "2018-03-07", "IHDA AIYRA PUTRIRAZU": "2018-04-14", "JAVAS PANDHEGA MAHFIE": "2018-07-29", "KAIVAN KAMIL SETYAWIJAYA": "2018-05-17", "KAUTSAR NAFI AL QARNI": "2018-01-13", "KAYRA SHAHIA ANANTA": "2018-01-12", "MEZZANGGA AMARTYA ATHARANI": "2018-04-12", "MUHAMMAD RIFQI ALKHALIFI": "2018-05-28", "NUANSAYANG ADA KARINDHA": "2018-04-28", "RR. NAYLA TRIBHUANA TUNGGADEWI": "2018-09-17", "SAVAIRA KHAIRANI IZZATUNISWA": "2018-05-12", "ADEEVA SOCA KURNIAWAN": "2018-02-20", "ADREENA KHANZA AGMADINA MECCA": "2017-10-04", "ALBIFARZAN BIMA HAHIJARY": "2017-10-21", "ALMIRA HILYA ALFATHUNNISA": "2018-02-17", "ARJUNA KENZO EL AZZAM": "2017-10-15", "AZKIA SORAYA AZZAHRA": "2018-05-22", "AZQIARA SHAQEENA ADISTY": "2017-11-23", "BINGAR SAMUDRA SANGKAN PAWENANG": "2017-09-13", "BRAMANTYA ANHAR DANAVENDRA": "2017-10-05", "FEBBY VICTORIA": "2018-02-11", "GATHAN DEVDANIYAL GUNAWAN": "2018-03-26", "GIFAGAN RASENDRIA ADNAN": "2017-08-13", "HAIDAR FASHA ARSYANENDRA": "2018-03-21", "HAMIZAN RAFIF MURWANTO": "2017-11-12", "HANANIA SAHI DHIEAYU": "2018-01-18", "KAYYISA ANINDITA MAHESWARI": "2018-03-02", "KEISYAFA ARGA AZZAHRA": "2017-07-02", "KUNHIRO ZAIN MANGKUNEGARA NASUTION": "2018-06-10", "MUHAMMAD ARZANKA ALQAHTANI": "2017-10-20", "MUHAMMAD FARIS HAZIM ALGHAZALI": "2018-04-02", "MUHAMMAD NAUFAL GHIFARI YAHYA": "2018-01-20", "RAJASA MAHESWARA NOPA PUTRA": "2018-05-06", "RAZAN UWAIS ALVARENDRA": "2017-05-20", "RR. ZHAFIRA NIDAN QINARI": "2018-01-18", "RUNAKO ARSENIO TOVANI": "2018-04-18", "SABIRA ASHEEQA DANURDARA": "2018-02-28", "SALSABILA DELISHA PUTRI": "2018-03-12", "UPANARIMA": "2017-07-13", "ADIBA AYUNAZAHRA MAHENDRA": "2016-07-13", "ALESHA SOFIA LATIF": "2016-12-22", "ALZIA ANGGUN PUTRI LESMANA": "2016-08-11", "ARSYILA JEHAN NAIRA": "2016-10-31", "ARVINO MUHAMMAD NAZRIL KHALIF": "2016-07-04", "ATTILA NADHIF ISKANDAR": "2016-12-31", "BEENATYA ADYA MARTANTA": "2016-09-23", "CATALUNA KINARIAN BANDRIANANTO": "2016-09-19", "EFWAN RAFFAZA ABIDZAR": "2017-01-24", "FARID ABDILLAH ANINDITO": "2016-08-25", "FATAN DIVO LARANTA": "2016-09-20", "GHASSANI SWARNANINDYA RIAWAN": "2016-08-18", "KAHIYANG ARSYFA Putri": "2016-05-13", "KIERAN SABIRALIANA GAZALA": "2016-09-28", "MYESHA AFSHEEN ADEEVA": "2016-06-19", "NURANI MERAH MERONA": "2016-09-06", "PAUNDRAKARNA ADRIAN": "2016-04-27", "R. DANISH SATYA KUMARAJENDRA": "2016-06-09", "RESTINA HAYYU KINANTI": "2016-10-06", "REYNAND GAMA ALKANZU": "2016-09-18", "SHAFALUNA FIDELYA HOSHI": "2016-09-25", "YUSUF HAIDAR FADIL PRATAMA": "2016-07-11", "ABRISAM REYNAND ALVARENDRA": "2016-05-21", "ADIRATNA KINASIH PRISCANARA": "2018-01-05", "AGHNIA ZUHRUFA AULIA": "2016-12-26", "AL MEERA SHAHIN ASHALINA": "2016-12-25", "ALMIR RAZKA ALVARONIZAM": "2016-05-31", "ARETHA NAUFA KARTIKA": "2016-06-14", "ARKANA RAFASYAA DARMAWAN": "2017-03-30", "ARSAKA ALINDRA PRATAMA": "2016-11-15", "ARSYA JIVI DAMARIO": "2016-07-14", "ATQIYA ASHALINA ISKANDAR ALAM": "2016-12-31", "AXELLE ALATAS BINTANG KUSUMA": "2016-11-19", "AZLAN HAMKA WIJAYA": "2016-07-26", "AZZALEA ZALFA HUMAIRA": "2017-05-05", "DZAKIYAH SHAFARAZ PRASETYO": "2017-05-03", "GHALIBI SANDIAGA RIAWAN": "2016-08-18", "KYNA MECCA AVICENNA": "2016-05-21", "MEDINA NAMEERA AJI QUEENDRA": "2016-06-14", "MEHDI ARAFAT": "2016-12-03", "MUHAMMAD WAHYU ABIDZAR": "2017-04-19", "NAFIA NUHA YUDHANTO": "2016-10-08", "OLIVIA ALESHAEDA ISTIAWAN": "2016-12-11", "RAMA NAJID ABDILLAH MUNANDAR": "2016-07-13", "SYAH FAREEZA NABILA RAMADANI": "2016-06-23", "SYADID ALRAFAEYZA AHMADI": "2016-09-08", "AL KAHFI HADIANTO": "2016-07-01", "ALYSSA AZZAHRA": "2017-05-19", "ARDANA KAELAN ALBAR": "2016-08-12", "ARDHANA RAKHA DHANURENDRA": "2017-01-08", "ARSAKHA MUHAMMAD ADRIAN": "2016-11-30", "CAKRAWALA PUTERA SANJAYA": "2017-01-03", "DAFFA ABHIMATA KHATULISTIWA": "2016-04-19", "DEN BAGUS ASTA MAHESWARA": "2017-05-03", "ELVINA ARSYFA SALSABILA": "2016-12-18", "FAZA AHMAD ALFARIZQI": "2016-07-01", "HANIEF HABIBIE OKTADIO": "2016-10-25", "HILMI AMMAR AHMAD": "2017-05-19", "JASMINE SALSABILA CHAIRUNNISA": "2016-07-02", "KEYSHA ARINDRA RAMADHANI": "2016-06-30", "KYNA MEDINA ARSCYLLA": "2016-11-06", "MUHAMMAD DZAKY YUDISTIRA": "2016-10-25", "MUHAMMAD NAUFAL NUR RASYID": "2017-03-12", "NADINE ZIVANA PRABOWO": "2017-04-01", "NADRIA KINANDARI ADIA": "2016-04-18", "NAFASYA ASHIMA RADISTY": "2016-11-11", "NOUMAN ALARIC RAUSYANFIKRI WITOYO": "2016-12-30", "R.ISMAIL HIDAYATULLAH": "2016-08-15", "RADIKA RAFI RADIASKORO": "2016-04-15", "RAFASHA SHIDIQ ALFARIH": "2016-11-29", "RANIA NINDITA PANGARIBOWO": "2017-02-25", "TISYA DEA ASHALINA": "2016-11-14", "YASMEENA SHAQUEENA ALESHA": "2017-03-09", "ALDHINO ALFARIZKI DIODY": "2016-11-22", "ALVENO AZZAM JATMIKO": "2016-09-06", "ARVAND HANENDA DETAMA": "2016-05-07", "FAHIERA SALSABILA CHAIRUNNISA": "2017-10-08", "FAZYAN ABYAZ ARSEN": "2017-01-27", "HAFIDZ ORLANDO AKBAR": "2016-10-27", "HAZIRA SAUQIYA": "15 OKTOBER 2016", "INARA ASHALINA ANINDRI": "2016-03-22", "KARIMA NISMARA PRATAMA": "18 JANUARI 2017", "KEKIRA ATHALETA ALMEERA": "14 APRIL 2017", "KEYAN AMAR RUQEE": "18 AGUSTUS 2016", "LUNA MIKAYLA KUSUMA": "11 OKTOBER 2016", "MIKAYLA KEYSHA SYAQUILA WIBOWO": "2016-12-25", "MISHA CHAIRUNNISA": "2017-06-12", "MUHAMMAD DIRGANTARA ALNANDI P": "2017-01-24", "MUHAMMAD HARUN AL RASYID": "18 DESEMBER 2016", "MUHAMMAD IRFAN FATAHILLAH AZZIKRI": "17 MEI 2016", "MUHAMMAD SULTAN HAFIZ": "09 JUNI 2017", "NADA FARHANA ZAYN": "10 OKTOBER 2016", "R. ZAID ZEYZAN OMBARA NAHDI": "2017-07-25", "RADEN AJENG AMIRA SOPHIA": "2017-04-18", "RAISYA ALMAHYRA HANIFA": "2017-06-10", "ZALFA NAQIYYA MECCA": "2017-07-11"
-    };
-
-    // 3. LOGIKA LIST GURU (MuridAdapter.kt)
-    const dbMuridGuru = {
-        "Pak Oky": [
-            {n: "Ahmad Yusuf Danisworo", k: "Kelas 1A", t: "Reguler"}, {n: "Abdullah Hamim Harimurti", k: "Kelas 1A", t: "Reguler"}, {n: "Adiba Shakila Qorri Aina Ahmad", k: "Kelas 1A", t: "Reguler"}, {n: "Amanullah Zain", k: "Kelas 1A", t: "Reguler"}, {n: "Kaivan Elvano Bimantoro", k: "Kelas 1A", t: "Reguler"}, {n: "Kaleena Ayudhya Ramadhani", k: "Kelas 1A", t: "Reguler"}, {n: "Osvaldy Rishad Andriyanto", k: "Kelas 1A", t: "Reguler"}, {n: "Rivero Syam Zafran", k: "Kelas 1A", t: "Reguler"}, {n: "Shazfa Alrafailah Ahmadi", k: "Kelas 1A", t: "Reguler"}, {n: "Skyleen Aruna Seiranala Salsabilla", k: "Kelas 1A", t: "Reguler"}, {n: "Aksara Pendar Andaru", k: "Kelas 2C", t: "Reguler"}, {n: "Alesha Almahyra Jingga", k: "Kelas 2C", t: "Reguler"}, {n: "Aretha Cantyana Zyan", k: "Kelas 2C", t: "Reguler"}, {n: "Fabian Azka Atharizqy Pamungkas", k: "Kelas 2C", t: "Reguler"}, {n: "Gibran Radhika Wiratama", k: "Kelas 2C", t: "Reguler"}, {n: "Ihda Aiyra Putrirazu", k: "Kelas 2C", t: "Reguler"}, {n: "Javas Pandhega Mahfie", k: "Kelas 2C", t: "Reguler"}, {n: "Kaivan Kamil Setyawijaya", k: "Kelas 2C", t: "Reguler"}, {n: "Kautsar Nafi Al Qarni", k: "Kelas 2C", t: "Reguler"}, {n: "Rr. Nayla Tribhuana Tunggadewi", k: "Kelas 2C", t: "Reguler"}, {n: "Myesha Afsheen Adeeva", k: "Kelas 3A", t: "Reguler"}, {n: "Nurani Merah Merona", k: "Kelas 3A", t: "Reguler"}, {n: "R. Danish Satya Kumarajendra", k: "Kelas 3A", t: "Reguler"}, {n: "Yusuf Haidar Fadil Pratama", k: "Kelas 3A", t: "Reguler"}, {n: "Nafia Nuha Yudhanto", k: "Kelas 3B", t: "Reguler"}, {n: "Nafasya Ashima Radisty", k: "Kelas 3C", t: "Reguler"}, {n: "Keyan Amar Ruqee", k: "Kelas 3D", t: "Reguler"}, {n: "Alveno Azzam Jatmiko", k: "Kelas 3D", t: "Reguler"}, {n: "Luna Mikayla Kusuma", k: "Kelas 3D", t: "Reguler"},
-            {n: "Adiba Ayunazahra Mahendra", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Afthara Yodya Wishaka", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Alesha Sofia Latif", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Altaff Falah Hamizan Maasi", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Annisa Almahyra", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Arsyila Jehan Naira", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Arvino Muhammad Nazril Khalif", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Attila Nadhif Iskandar", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}, {n: "Azalea Najma Orlin", k: "Kelas 3A", t: "Khusus Tahfidz Kelas 3"}
-        ],
-        "Pak Tebe": [
-            {n: "Freya Safira Yasmin Fitaly", k: "Kelas 1B", t: "Reguler"}, {n: "Gading Ghazali", k: "Kelas 1B", t: "Reguler"}, {n: "Ganesh Hamizzhafran", k: "Kelas 1B", t: "Reguler"}, {n: "Ghassani Zianka Elshanum", k: "Kelas 1B", t: "Reguler"}, {n: "Hafid Rabbani", k: "Kelas 1B", t: "Reguler"}, {n: "Muhammad Kalandra Abdillah Waseso", k: "Kelas 1B", t: "Reguler"}, {n: "Muhammad Oktaf Addyagani", k: "Kelas 1B", t: "Reguler"}, {n: "Muhammad Said Hadyandhika Purwanto", k: "Kelas 1B", t: "Reguler"}, {n: "Qiandra Humaira Praditya", k: "Kelas 1B", t: "Reguler"}, {n: "Sarah Mecca Alexandra", k: "Kelas 1B", t: "Reguler"}, {n: "Giandra Adyatama Susanto", k: "Kelas 2C", t: "Reguler"}, {n: "Arshaka Kenzie Ervito", k: "Kelas 2C", t: "Reguler"}, {n: "Annasya Nadheera Mecca", k: "Kelas 2C", t: "Reguler"}, {n: "Ahmad Fatta As-Sufi", k: "Kelas 2C", t: "Reguler"}, {n: "Kayra Shahia Ananta", k: "Kelas 2C", t: "Reguler"}, {n: "Rafka Aryaputra", k: "Kelas 2C", t: "Reguler"}, {n: "Afthara Yodya Wishaka", k: "Kelas 3A", t: "Reguler"}, {n: "Barra Khalil Ayubi", k: "Kelas 3A", t: "Reguler"}, {n: "Ben Khalid Ayubi", k: "Kelas 3B", t: "Reguler"}, {n: "Devendra Farzana Ariqin", k: "Kelas 3B", t: "Reguler"}, {n: "Ardana Kaelan Albar", k: "Kelas 3C", t: "Reguler"}, {n: "Azni Azarine", k: "Kelas 3C", t: "Reguler"}, {n: "Nadria Kinandari Adia", k: "Kelas 3C", t: "Reguler"}, {n: "Muhammad Harun Al Rasyid", k: "Kelas 3D", t: "Reguler"},
-            {n: "Al Kahfi Hadianto", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Alyssa Azzahra", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Ardana Kaelan Albar", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Arsakha Muhammad Adrian", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Azni Azarine", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Cakrawala Putera Sanjaya", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Daffa Abhimata Khatulistiwa", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Den Bagus Asta Maheswara", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}, {n: "Elvina Arsyfa Salsabila", k: "Kelas 3C", t: "Khusus Tahfidz Kelas 3"}
-        ]
-        // Tambahkan guru lainnya di sini...
-    };
-
-    // --- LOGIKA UTAMA (Sangat Lengkap) ---
-
-    // 1. Initial Hal Spinner (InputCapaianActivity.kt)
-    const spH = document.getElementById('spHalaman');
-    for(let i=1; i<=44; i++) {
-        let opt = document.createElement('option');
-        opt.value = i; opt.innerText = "Halaman " + i;
-        spH.appendChild(opt);
-    }
-
-    function showPage(id) { 
-        document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); 
-        document.getElementById(id).style.display = 'flex'; 
-    }
-
-    // SPLASH
-    setTimeout(() => { document.getElementById('splashScreen').style.display = 'none'; showPage('activity_home'); }, 3000);
-
-    // LOGIN GURU (Validasi NIY)
-    function performLoginGuru() {
-        const n = document.getElementById('etNamaGuru').value.trim();
-        const p = document.getElementById('etNIY').value.trim();
-        if (dbGuru[n] && dbGuru[n] === p) {
-            loginGuru = n;
-            document.getElementById('welcomeGuru').innerText = "Assalamu'alaikum, " + n;
-            renderMuridList();
-            showPage('activity_daftar_murid');
-        } else { alert("Login Gagal! NIY Salah."); }
-    }
-
-    // LOGIN WALI (Validasi Tgl Lahir)
-    function performLoginWali() {
-        const n = document.getElementById('etNamaAnanda').value.toUpperCase().trim();
-        const t = document.getElementById('etTglLahir').value;
-        if (dbSiswa[n] && dbSiswa[n] === t) {
-            document.getElementById('tvAnandaHeader').innerText = "Laporan Ananda " + n;
-            showPage('activity_hasil_wali');
-            fetchProgres(n);
-        } else { alert("Data tidak ditemukan! Gunakan Nama Lengkap (KAPITAL) & Tgl Lahir sesuai database."); }
-    }
-
-    // LIST MURID (RecyclerView + Header Logic)
-    function renderMuridList() {
-        const rv = document.getElementById('rvMurid'); rv.innerHTML = "";
-        const list = dbMuridGuru[loginGuru] || [];
-        list.forEach((m, idx) => {
-            if (idx === 0 || m.t !== list[idx-1].t) {
-                const header = document.createElement('div');
-                header.className = "group-header"; header.innerText = m.t;
-                rv.appendChild(header);
-            }
-            const item = document.createElement('div');
-            item.className = "item-murid";
-            item.innerHTML = `<div><b>${m.n}</b><br><small>${m.k}</small></div>`;
-            item.onclick = () => openInput(m);
-            rv.appendChild(item);
-        });
-    }
-
-    function openInput(m) {
-        selectedSiswa = m;
-        document.getElementById('targetNama').innerText = m.n;
-        document.getElementById('targetKls').innerText = m.k;
-        const isKhusus = m.t.includes("Khusus");
-        document.getElementById('layoutTilawati').className = isKhusus ? "hidden" : "";
-        document.getElementById('layoutCatatan').className = isKhusus ? "hidden" : "";
-        document.getElementById('spPredikatHafalan').innerHTML = isKhusus 
-            ? '<option>A (Sangat Lancar)</option><option>B (Lancar)</option><option>C (Cukup Lancar)</option><option>D (Perlu Murojaah)</option>'
-            : '<option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option>';
-        showPage('activity_input');
-    }
-
-    // AUTO NOTE LOGIC (Kotlin: updateCatatanOtomatis)
-    function autoGenerateNote() {
-        if(selectedSiswa.t.includes("Khusus")) return;
-        const getScore = (p) => p.includes("A") ? 3 : p.includes("B") ? 2 : p.includes("C") ? 1 : 0;
-        const avg = (getScore(document.getElementById('spPredikatReguler').value) + getScore(document.getElementById('spPredikatHafalan').value)) / 2;
-        const predStr = avg >= 2.5 ? "sangat baik" : avg >= 1.5 ? "baik" : "cukup baik";
-        document.getElementById('etCatatan').value = `Alhamdulillah, ananda mampu mengikuti pelajaran tahfidz dengan ${predStr}. Mohon pendampingan Bapak dan Ibu di rumah agar ananda istiqomah murojaah.`;
-        updateCharCounter();
-    }
-
-    function updateCharCounter() {
-        const len = document.getElementById('etCatatan').value.length;
-        document.getElementById('charCounter').innerText = len + "/360";
-        document.getElementById('charCounter').style.color = len >= 350 ? "red" : "#888";
-    }
-
-    function simpanData() {
-        const btn = document.getElementById('btnSimpan'); btn.innerText = "Mengirim..."; btn.disabled = true;
-        const params = new URLSearchParams({
-            guru: loginGuru, nama_siswa: selectedSiswa.n, kls: selectedSiswa.k,
-            hafalan: document.getElementById('etHafalan').value,
-            predikat_hafalan: document.getElementById('spPredikatHafalan').value,
-            catatan: document.getElementById('etCatatan').value || "-"
-        });
-        fetch(webAppUrl, { method: 'POST', mode: 'no-cors', body: params })
-        .then(() => { alert("Alhamdulillah, Data Tersimpan!"); showPage('activity_daftar_murid'); btn.disabled = false; btn.innerText = "SIMPAN"; });
-    }
-
-    function fetchProgres(nama) {
-        const h = document.getElementById('listProgres'); h.innerHTML = "Memuat data...";
-        fetch(webAppUrl + "?nama=" + nama).then(res => res.json()).then(data => {
-            if(data.length === 0) return h.innerHTML = "Belum ada riwayat.";
-            let htm = ""; data.forEach(d => { htm += `<div class="item-murid" style="flex-direction:column; align-items:start;"><b>${d.tanggal}</b><span>Hafalan: ${d.hafalan}</span><span>Predikat: ${d.predikat}</span></div>`; });
-            h.innerHTML = htm;
-        });
-    }
-</script>
+    <script>
+        // Logika Splash Screen (Kotlin: MainActivity)
+        setTimeout(() => { 
+            document.getElementById('splashScreen').style.display = 'none'; 
+            showPage('activity_home'); 
+        }, 3000);
+    </script>
 </body>
 </html>
