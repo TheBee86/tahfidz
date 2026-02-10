@@ -130,9 +130,10 @@ function simpanData() {
     btn.innerText = "Mengirim..."; btn.disabled = true;
 
     const params = new URLSearchParams();
+    // Gunakan nama parameter yang ditangkap oleh script .gs di atas
     params.append("guru", activeGuru);
     params.append("nama_siswa", selectedSiswa.n);
-    params.append("kls", selectedSiswa.k);
+    params.append("kls", selectedSiswa.k); 
     params.append("hafalan", document.getElementById('etHafalan').value);
     params.append("predikat_hafalan", document.getElementById('spPredikatHafalan').value);
 
