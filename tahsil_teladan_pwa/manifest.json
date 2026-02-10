@@ -1,1 +1,23 @@
+{
+  "name": "Mutabaah Online SD Teladan Yogyakarta",
+  "short_name": "Tahsil",
+  "description": "Aplikasi Monitoring Tahfidz & Tilawati SD Teladan Yogyakarta",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2E7D32",
+  "icons": [
+    {
+      "src": "190415-LOGO-BARU-TELADAN.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "190415-LOGO-BARU-TELADAN.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
 
