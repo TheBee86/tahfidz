@@ -56,32 +56,44 @@
             <h3 id="targetNama" style="margin: 0; color: #2E7D32;"></h3>
             <p id="targetKls" style="font-size: 12px; color: #999; margin: 5px 0;"></p>
             
-            <div id="layoutReguler">
-                <label>Tilawati / Qur'an</label>
+            <div id="layoutTilawati">
+                <label>Tilawati</label>
                 <div style="display: flex; gap: 8px;">
                     <select id="spJilid">
                         <option>Pilih Jilid</option>
                         <option>Jilid 1</option><option>Jilid 2</option><option>Jilid 3</option>
                         <option>Jilid 4</option><option>Jilid 5</option><option>Jilid 6</option>
-                        <option>Qur'an</option>
                     </select>
-                    <input type="text" id="etHalaman" placeholder="Hal">
+                    <select id="spHalaman">
+                        <option>Pilih Halaman</option>
+                    </select>
                 </div>
-                <select id="spPredikatReguler" onchange="autoGenerateNote()">
-                    <option value="">Pilih Predikat</option>
+                <select id="spPredikatTilawati" onchange="updateCatatanOtomatis()">
+                    <option>Pilih Nilai</option>
                     <option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option>
                 </select>
             </div>
 
-            <label>Tahfidz (Hafalan)</label>
-            <input type="text" id="etHafalan" placeholder="Contoh: An-Naba 1-10">
-            <select id="spPredikatHafalan" onchange="autoGenerateNote()"></select>
+            <div id="layoutAlquran">
+                <label>Al-Qur'an (Binnadzor)</label>
+                <input type="text" id="etAlquran" placeholder="Contoh: Al-Baqarah 1-10">
+                <select id="spPredikatAlquran" onchange="updateCatatanOtomatis()">
+                    <option>Pilih Nilai</option>
+                    <option>A (Sangat Baik)</option><option>B (Baik)</option><option>C (Cukup)</option>
+                </select>
+            </div>
 
-            <label>Catatan Guru (Auto)</label>
-            <textarea id="etCatatan" rows="4" maxlength="360" oninput="updateCharCounter()"></textarea>
-            <div id="charCounter" class="char-counter">0/360</div>
+            <label>Hafalan (Tahfidz)</label>
+            <input type="text" id="etHafalan" placeholder="Contoh: An-Naba 1-5">
+            <select id="spPredikatHafalan" onchange="updateCatatanOtomatis()"></select>
 
-            <button class="btn btn-green" id="btnSimpan" onclick="simpanData()">SIMPAN</button>
+            <div id="layoutCatatan">
+                <label>Catatan Guru (Auto)</label>
+                <textarea id="etCatatan" rows="4" maxlength="360" oninput="updateCharCounter()"></textarea>
+                <div id="charCounter" class="char-counter">0/360</div>
+            </div>
+
+            <button class="btn btn-green" id="btnSimpan" onclick="simpanData()">SIMPAN DATA</button>
             <button class="btn btn-back" onclick="showPage('activity_daftar_murid')">BATAL</button>
         </div>
     </div>
@@ -107,3 +119,4 @@
     </script>
 </body>
 </html>
+
